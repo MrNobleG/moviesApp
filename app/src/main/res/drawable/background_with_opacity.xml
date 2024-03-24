@@ -1,0 +1,14 @@
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Image de fond -->
+    <item>
+        <bitmap
+            android:src="@drawable/mv1"
+            />
+    </item>
+
+    <item>
+        <shape android:shape="rectangle">
+            <solid android:color="#CC000000" />
+        </shape>
+    </item>
+</layer-list>
