@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#253042"
+    android:background="@color/main_background"
     tools:context=".Activity.DetailActivity">
 
     <androidx.core.widget.NestedScrollView
@@ -31,28 +31,33 @@
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/constraintLayout2"
-                android:layout_width="413dp"
+                android:layout_width="390dp"
                 android:layout_height="51dp"
+                android:layout_marginStart="12dp"
+                android:layout_marginEnd="12dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
 
                 <ImageView
                     android:id="@+id/returnbtn"
-                    android:layout_width="37dp"
-                    android:layout_height="38dp"
-                    android:layout_marginStart="16dp"
+                    android:layout_width="30dp"
+                    android:layout_height="40dp"
+                    android:layout_marginLeft="25dp"
                     android:layout_marginTop="8dp"
-                    android:src="@drawable/icons8_arrow_50"
+                    android:src="@drawable/back"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:srcCompat="@drawable/back" />
+                     />
 
                 <CheckBox
                     android:id="@+id/checkBox"
                     style="@android:style/Widget.CompoundButton.CheckBox"
-                    android:layout_width="69dp"
-                    android:layout_height="49dp"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="25dp"
+
                     android:button="@drawable/selector_favorite_item"
                     android:checked="false"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -111,6 +116,7 @@
                     android:layout_marginStart="16dp"
                     android:layout_marginTop="4dp"
                     android:drawableLeft="@drawable/icons8_time_32"
+                    android:drawableTint="@color/white"
                     android:text="0"
                     android:textColor="@color/white"
                     app:layout_constraintStart_toEndOf="@+id/rtoreview"
@@ -132,10 +138,11 @@
                 android:id="@+id/moviename"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="16dp"
+                android:layout_marginBottom="84dp"
+                android:gravity="center"
                 android:text="TextView"
-                android:textColor="@color/white"
-                android:textSize="20sp"
+                android:textColor="#C6EBC5"
+                android:textSize="24sp"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="@+id/fullimage"
                 app:layout_constraintEnd_toEndOf="@+id/constraintLayout"
@@ -178,11 +185,14 @@
 
             <TextView
                 android:id="@+id/plot"
-                android:layout_width="360dp"
-                android:layout_height="80dp"
+                android:layout_width="390dp"
+                android:layout_height="110dp"
                 android:layout_marginTop="12dp"
                 android:text="TextView"
+                android:padding="20dp"
                 android:textColor="@color/white"
+                android:layout_marginStart="12dp"
+                android:layout_marginEnd="12dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.509"
                 app:layout_constraintStart_toStartOf="parent"
@@ -201,11 +211,14 @@
 
             <TextView
                 android:id="@+id/Actor"
-                android:layout_width="354dp"
-                android:layout_height="47dp"
+                android:layout_width="390dp"
+                android:layout_height="110dp"
                 android:layout_marginTop="4dp"
                 android:text="TextView"
                 android:textColor="@color/white"
+                android:padding="20dp"
+                android:layout_marginStart="12dp"
+                android:layout_marginEnd="12dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.578"
@@ -232,6 +245,7 @@
                 android:text="test"
                 android:textColor="@color/white"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.339"
                 app:layout_constraintStart_toEndOf="@+id/textView13"
                 app:layout_constraintTop_toBottomOf="@+id/fullimage" />
 
@@ -239,8 +253,8 @@
                 android:id="@+id/textView13"
                 android:layout_width="40dp"
                 android:layout_height="18dp"
-                android:layout_marginStart="308dp"
-                android:layout_marginBottom="15dp"
+                android:layout_marginStart="276dp"
+                android:layout_marginBottom="20dp"
                 android:text="Year"
                 android:textColor="#FFC107"
                 app:layout_constraintBottom_toTopOf="@+id/constraintLayout"
