@@ -17,6 +17,11 @@ public class databaseHelper extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase MyDatabase) {
         MyDatabase.execSQL("create Table allusers(username TEXT primary key,fullname TEXT,email TEXT,password TEXT)");
+        MyDatabase.execSQL("CREATE TABLE favorites (" +
+                "imdbId TEXT PRIMARY KEY," +
+                "FOREIGN KEY(username) REFERENCES allusers(username)," +
+                "UNIQUE(username, imdbId) ON CONFLICT REPLACE)");
+    }
 
     }
 
