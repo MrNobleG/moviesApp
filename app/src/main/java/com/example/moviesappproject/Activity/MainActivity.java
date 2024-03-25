@@ -34,21 +34,40 @@ public class MainActivity extends AppCompatActivity {
     private ProgressBar loading1,loading2;
 
     private TextView searchbt;
+    ImageView favorites;
 
-    private ImageView searchimg;
+
+    String useremail;
+    String sendemail;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        search();
+
         innitView();
        sendRequest1();
        sendRequest2();
 
 
-        String useremail = getIntent().getStringExtra("useremail");
-        String sendemail = useremail;
+        useremail = getIntent().getStringExtra("useremail");
+        sendemail = useremail;
+        search();
         ImageView profile = findViewById(R.id.profile);
+        favorites =findViewById(R.id.favorite);
+
+        favorites.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent intent = new Intent(MainActivity.this, ListFavoriteFilms.class);
+                intent.putExtra("email",sendemail);
+                startActivity(intent);
+                overridePendingTransition(R.anim.transition, R.anim.transition2);
+            }
+        });
+
+
+
         profile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -65,12 +84,12 @@ public class MainActivity extends AppCompatActivity {
     private void search() {
         searchbt=findViewById(R.id.editText2);
         searchbt.getText().toString();
-        Log.d("test1", "onEditorAction: "+searchbt.getText().toString());
         searchbt.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
             public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
                 if(actionId== EditorInfo.IME_ACTION_SEARCH){
                     Intent in =new Intent(MainActivity.this,ListFilmsActivity.class);
+                    in.putExtra("email",sendemail);
                     in.putExtra("search",searchbt.getText().toString());
                     startActivity(in);
                     return true;

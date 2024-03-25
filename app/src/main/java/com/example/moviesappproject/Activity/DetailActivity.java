@@ -30,29 +30,39 @@ import com.google.gson.Gson;
 import java.util.List;
 
 public class DetailActivity extends AppCompatActivity {
-    //private FavDB dbHelper;
+    private databaseHelper dbHelper;
     private RequestQueue mRequestQueue;
     private StringRequest mStringRequest;
     private ProgressBar progressBar;
     private TextView titleTxt, movieIMDBRateTxt, movieRotRateTxt, Time, movieSummaryInfo, movieActorsInfo, RateTxt, MovieYear,Moviegenre;
-    private String IDfilm;
+    private String IDfilm,useremail;
     private ImageView backImg, pic;
     private NestedScrollView scrollView;
     private CheckBox favbox;
+    String username;
+    User user;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail);
-
+        dbHelper = new databaseHelper(this);
+        useremail=getIntent().getStringExtra("email");
+        Log.d("test1", "onCreate v3: "+useremail);
+        user = dbHelper.getUserByEmail(useremail);
+        Log.d("test 1", "onCreate: "+user.username);
+        username =user.username;
+        Log.d("test 1", "onCreate: "+username);
         IDfilm = getIntent().getStringExtra("id");
+
+
         initView();
         sendRequest();
 
 
-       // dbHelper = new FavDB(this);
-        //boolean isFilmInDatabase = isFilmInDatabase(IDfilm);
-        //favbox.setChecked(isFilmInDatabase);
+
+        boolean isFilmInDatabase = isFilmInDatabase(IDfilm,username);
+        favbox.setChecked(isFilmInDatabase);
     }
 
     private void sendRequest() {
@@ -135,25 +145,25 @@ public class DetailActivity extends AppCompatActivity {
             });
 
 
-            /*favbox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            favbox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
                 @Override
                 public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                     Intent open =new Intent(DetailActivity.this,DatabaseActivity.class);
                     open.putExtra("imdbId", IDfilm);
+                    open.putExtra("username",username);
                     open.putExtra("isChecked", isChecked);
                     startActivity(open);
                 }
-            });*/
-
+            });
 
         }
 
-    /*private boolean isFilmInDatabase(String imdbId) {
+    private boolean isFilmInDatabase(String imdbId, String username) {
         // Open your database connection
         SQLiteDatabase db = dbHelper.getReadableDatabase();
 
-        // Query the database to check if the film's ID exists
-        Cursor cursor = db.query("FavoriteFilms", null, "imdbId = ?", new String[]{imdbId}, null, null, null);
+        // Query the database to check if the combination of imdbId and username exists in the favorites table
+        Cursor cursor = db.query("favorites", null, "imdbId = ? AND username = ?", new String[]{imdbId, username}, null, null, null);
         boolean exists = cursor.getCount() > 0;
 
         // Close the cursor and the database connection
@@ -161,6 +171,6 @@ public class DetailActivity extends AppCompatActivity {
         db.close();
 
         return exists;
-    }*/
+    }
 
     }

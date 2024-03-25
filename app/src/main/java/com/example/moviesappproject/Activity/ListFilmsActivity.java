@@ -32,12 +32,14 @@ public class ListFilmsActivity extends AppCompatActivity {
     protected  String rech;
 
     private ImageView back;
+    String userEmail;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         Intent intent=getIntent();
+        userEmail = getIntent().getStringExtra("email");
         rech=intent.getStringExtra("search");
         setContentView(R.layout.activity_list_films);
         initView();
@@ -62,7 +64,7 @@ public class ListFilmsActivity extends AppCompatActivity {
                 Gson gson = new Gson();
                 loading.setVisibility(View.GONE);
                 OMDBResponse omdbResponse = gson.fromJson(response, OMDBResponse.class);
-                adapterBestMovies = new FilmListAdapter(omdbResponse);
+                adapterBestMovies = new FilmListAdapter(omdbResponse,userEmail);
                 recyclerViewBestMovies.setAdapter(adapterBestMovies);
             }
         }, new Response.ErrorListener() {

@@ -2,7 +2,6 @@ package com.example.moviesappproject.Adapter;
 
 import android.content.Context;
 import android.content.Intent;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,20 +15,21 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.resource.bitmap.CenterCrop;
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
 import com.bumptech.glide.request.RequestOptions;
-//import com.example.moviesappproject.Activiti.DetailActivity;
 import com.example.moviesappproject.Activity.DetailActivity;
-import com.example.moviesappproject.Domain.OMDBResponse;
-import com.example.moviesappproject.Domain.Search;
+import com.example.moviesappproject.Domain.Filmitem;
 import com.example.moviesappproject.R;
 
-public class FilmListAdapter extends RecyclerView.Adapter<FilmListAdapter.ViewHolder> {
-    private OMDBResponse items;
-    private Context context;
-    private String userEmail;
+import java.util.List;
 
-    public FilmListAdapter(OMDBResponse items,String useremail) {
+public class FilmFavoriteAdapter extends RecyclerView.Adapter<FilmFavoriteAdapter.ViewHolder> {
+    private List<Filmitem> items; // Change OMDBResponse to List<Search>
+    private Context context;
+    private  String userEmail;
+
+    public FilmFavoriteAdapter(List<Filmitem> items,String useremail) {
         this.items = items;
         this.userEmail=useremail;
+
     }
 
     @NonNull
@@ -42,33 +42,40 @@ public class FilmListAdapter extends RecyclerView.Adapter<FilmListAdapter.ViewHo
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        Search searchItem = items.getSearch().get(position);
-        holder.titleTxt.setText(searchItem.getTitle());
+
+
+        Filmitem filmitem = items.get(position); // Get the Search object at the current position
+        holder.titleTxt.setText(filmitem.getTitle()); // Set the title from the Search object
 
         RequestOptions requestOptions = new RequestOptions();
         requestOptions = requestOptions.transform(new CenterCrop(), new RoundedCorners(30));
 
         Glide.with(context)
-                .load(searchItem.getPoster())
+                .load(filmitem.getPoster()) // Load the poster URL from the Search object
                 .apply(requestOptions)
                 .into(holder.pic);
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-               Intent intent = new Intent(context, DetailActivity.class);
-               intent.putExtra("id", searchItem.getImdbID());
-               intent.putExtra("email",userEmail);
-                Log.d("test1", "onClick: "+userEmail);
+                Intent intent = new Intent(context, DetailActivity.class);
+                intent.putExtra("id", filmitem.getImdbID()); // Pass the IMDB ID of the Search object
+                intent.putExtra("email",userEmail);
                 context.startActivity(intent);
             }
         });
     }
 
+
     @Override
     public int getItemCount() {
-        return items.getSearch().size();
+        if (items != null) {
+            return items.size();
+        } else {
+            return 0; // or return a default size if appropriate
+        }
     }
+
 
     public class ViewHolder extends RecyclerView.ViewHolder {
         TextView titleTxt;

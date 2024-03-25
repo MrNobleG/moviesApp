@@ -22,7 +22,11 @@
             android:name=".Activity.DetailActivity"
             android:label="Detail Activity">
         </activity>
-
+        <activity
+            android:name=".Activity.DatabaseActivity"
+            android:label="Database Activity">
+        </activity>
+        <activity android:name="com.example.moviesappproject.Activity.ListFavoriteFilms" />
         <activity
             android:name=".Activity.ProfileViewActivity"
             android:exported="false" />
