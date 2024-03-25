@@ -7,4 +7,7 @@
     <color name="green">#34e3c4</color>
     <color name="purple">#8692f7</color>
     <color name="cyan">#E0FFFF</color>
+    <color name="lightblue">#9edbe7</color>
+    <color name="backgroundblue">#2F3D53</color>
+    <color name="darkblue">#253042</color>
 </resources>

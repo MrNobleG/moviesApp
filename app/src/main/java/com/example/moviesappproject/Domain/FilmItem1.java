@@ -7,7 +7,7 @@ import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 
-public class FilmItem {
+public class FilmItem1 {
 
     @SerializedName("id")
     @Expose

@@ -9,20 +9,20 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.View;
+import android.view.inputmethod.EditorInfo;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
-import com.example.moviesappproject.Adapter.FilmListAdapter;
-import com.example.moviesappproject.Domain.FilmItem;
-import com.example.moviesappproject.Domain.ListFilm;
+import com.example.moviesappproject.Adapter.FilmListAdapter1;
+import com.example.moviesappproject.Domain.ListFilm1;
 import com.example.moviesappproject.R;
 import com.google.gson.Gson;
 
@@ -32,13 +32,20 @@ public class MainActivity extends AppCompatActivity {
     private RequestQueue mRequestQueue;
     private StringRequest mStringRequest,mStringRequest2;
     private ProgressBar loading1,loading2;
+
+    private TextView searchbt;
+
+    private ImageView searchimg;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        search();
         innitView();
        sendRequest1();
        sendRequest2();
+
+
         String useremail = getIntent().getStringExtra("useremail");
         String sendemail = useremail;
         ImageView profile = findViewById(R.id.profile);
@@ -54,6 +61,26 @@ public class MainActivity extends AppCompatActivity {
         });
 
     }
+
+    private void search() {
+        searchbt=findViewById(R.id.editText2);
+        searchbt.getText().toString();
+        Log.d("test1", "onEditorAction: "+searchbt.getText().toString());
+        searchbt.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+            @Override
+            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+                if(actionId== EditorInfo.IME_ACTION_SEARCH){
+                    Intent in =new Intent(MainActivity.this,ListFilmsActivity.class);
+                    in.putExtra("search",searchbt.getText().toString());
+                    startActivity(in);
+                    return true;
+                }
+                return false;
+            }
+        });
+
+    }
+
     @Override
     public void onBackPressed() {
         new AlertDialog.Builder(this)
@@ -78,8 +105,8 @@ public class MainActivity extends AppCompatActivity {
         mStringRequest = new StringRequest(Request.Method.GET, "https://moviesapi.ir/api/v1/movies?page=1", response -> {
             Gson gson = new Gson();
             loading1.setVisibility(View.GONE);
-            ListFilm items=gson.fromJson(response, ListFilm.class);
-            adapterNewMovies = new FilmListAdapter(items);
+            ListFilm1 items=gson.fromJson(response, ListFilm1.class);
+            adapterNewMovies = new FilmListAdapter1(items);
             recyclerViewNewMovies.setAdapter(adapterNewMovies);
 
         }, error -> {
@@ -94,8 +121,8 @@ public class MainActivity extends AppCompatActivity {
         mStringRequest2 = new StringRequest(Request.Method.GET, "https://moviesapi.ir/api/v1/movies?page=3", response -> {
             Gson gson = new Gson();
             loading2.setVisibility(View.GONE);
-            ListFilm items=gson.fromJson(response, ListFilm.class);
-            adapterUpcoming = new FilmListAdapter(items);
+            ListFilm1 items=gson.fromJson(response, ListFilm1.class);
+            adapterUpcoming = new FilmListAdapter1(items);
             recyclerViewUpcomingMovies.setAdapter(adapterUpcoming);
 
         }, error -> {

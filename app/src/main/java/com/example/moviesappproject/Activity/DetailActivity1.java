@@ -4,30 +4,25 @@ import static androidx.recyclerview.widget.RecyclerView.*;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.widget.NestedScrollView;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
-import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.bumptech.glide.Glide;
 import com.example.moviesappproject.Adapter.imageListAdapter;
-import com.example.moviesappproject.Domain.FilmItem;
+import com.example.moviesappproject.Domain.FilmItem1;
 import com.example.moviesappproject.R;
 import com.google.android.material.imageview.ShapeableImageView;
 import com.google.gson.Gson;
 
-public class DetailActivity extends AppCompatActivity {
+public class DetailActivity1 extends AppCompatActivity {
     private RequestQueue mRequestQueue;
     private StringRequest mStringRequest;
 
@@ -41,7 +36,7 @@ public class DetailActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_detail);
+        setContentView(R.layout.activity_detail1);
         idFilm=getIntent().getIntExtra("id",0);
         initView();
         sendRequest();
@@ -56,9 +51,9 @@ public class DetailActivity extends AppCompatActivity {
 
 
 
-            FilmItem item = gson.fromJson(response,FilmItem.class);
-            Glide.with(DetailActivity.this).load(item.getPoster()).into(pic1);
-            Glide.with(DetailActivity.this).load(item.getPoster()).into(pic2);
+            FilmItem1 item = gson.fromJson(response, FilmItem1.class);
+            Glide.with(DetailActivity1.this).load(item.getPoster()).into(pic1);
+            Glide.with(DetailActivity1.this).load(item.getPoster()).into(pic2);
             title.setText(item.getTitle());
             movieRate.setText(item.getImdbRating());
             movieTime.setText(item.getRuntime());

@@ -34,22 +34,24 @@
                 android:textSize="25sp">
 
             </TextView>
+
             <EditText
                 android:id="@+id/editText2"
-                android:layout_width="match_parent"
+                android:layout_width="370dp"
                 android:layout_height="50dp"
                 android:layout_margin="16dp"
-                android:textColor="@color/white"
-                android:hint="Search Movies ...."
-                android:textColorHint="@color/white"
-                android:drawableStart="@drawable/search"
-                android:padding="12dp"
-                android:drawablePadding="8dp"
-                android:textSize="16sp"
-                android:ems="10"
-                android:inputType="text"
                 android:background="@drawable/search_edit"
-                >
+                android:drawableStart="@drawable/search"
+                android:drawablePadding="8dp"
+                android:ems="10"
+                android:hint="Search Movies ...."
+                android:imeOptions="actionSearch"
+                android:inputType="text"
+                android:padding="12dp"
+                android:singleLine="true"
+                android:textColor="@color/white"
+                android:textColorHint="@color/white"
+                android:textSize="16sp">
 
             </EditText>
             <TextView

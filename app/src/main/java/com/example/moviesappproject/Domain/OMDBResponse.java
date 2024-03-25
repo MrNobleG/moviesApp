@@ -5,19 +5,20 @@ import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
 
-
-public class ListFilm {
-
+public class OMDBResponse {
     @SerializedName("Search")
     @Expose
     private List<Search> search;
+
     @SerializedName("totalResults")
     @Expose
     private String totalResults;
+
     @SerializedName("Response")
     @Expose
     private String response;
 
+    // Getter and setter methods
     public List<Search> getSearch() {
         return search;
     }
@@ -41,5 +42,4 @@ public class ListFilm {
     public void setResponse(String response) {
         this.response = response;
     }
-
 }
