@@ -4,13 +4,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#253042"
+    android:background="@color/main_background"
     tools:context=".Activity.ListFilmsActivity">
 
     <ScrollView
         android:id="@+id/scrollview"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@drawable/background_gradient2"
         tools:layout_editor_absoluteX="0dp"
         tools:layout_editor_absoluteY="44dp">
 
@@ -26,22 +27,13 @@
 
                 <ImageView
                     android:id="@+id/backbtn"
-                    android:layout_width="wrap_content"
-                    android:layout_height="53dp"
+                    android:layout_width="25dp"
+                    android:layout_height="40dp"
                     android:layout_marginStart="10dp"
                     android:layout_marginEnd="0dp"
                     app:srcCompat="@drawable/back" />
 
-                <TextView
-                    android:id="@+id/textView5"
-                    android:layout_width="354dp"
-                    android:layout_height="match_parent"
-                    android:layout_marginTop="10dp"
-                    android:text="Results"
-                    android:textAlignment="center"
-                    android:textColor="@color/white"
-                    android:textSize="24dp"
-                    android:textStyle="bold" />
+
             </LinearLayout>
 
             <androidx.constraintlayout.widget.ConstraintLayout
@@ -52,6 +44,9 @@
                     android:id="@+id/recyclerfilmlist"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="40dp"
+                    android:layout_marginStart="24dp"
+                    android:layout_marginEnd="24dp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"

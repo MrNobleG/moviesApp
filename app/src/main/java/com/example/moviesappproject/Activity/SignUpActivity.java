@@ -94,7 +94,7 @@ public class SignUpActivity extends AppCompatActivity {
         if (username.isEmpty() || fullName.isEmpty() || email.isEmpty() || password.isEmpty()) {
             Toast.makeText(SignUpActivity.this, "All the fields are required", Toast.LENGTH_SHORT).show();
             return false;
-        } else if (!fullName.matches("[a-zA-Z]+")) {
+        } else if (!fullName.matches("[a-zA-Z\\s]+")) {
             Toast.makeText(SignUpActivity.this, "Full Name should be alphabetic", Toast.LENGTH_SHORT).show();
             return false;
         } else if (!isValidEmail(email)) {
