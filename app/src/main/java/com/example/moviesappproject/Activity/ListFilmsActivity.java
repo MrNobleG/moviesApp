@@ -34,6 +34,7 @@ public class ListFilmsActivity extends AppCompatActivity {
     private ImageView back;
     String userEmail;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

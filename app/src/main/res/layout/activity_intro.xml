@@ -22,8 +22,8 @@
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/constraintLayout"
-                android:layout_width="match_parent"
-                android:layout_height="600dp"
+                android:layout_width="415dp"
+                android:layout_height="727dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -69,10 +69,10 @@
                     android:layout_marginEnd="24dp"
                     android:maxLines="2"
                     android:text="ERKECH CINEMA"
-                    android:typeface="monospace"
                     android:textAlignment="center"
                     android:textColor="@color/white"
                     android:textSize="40sp"
+                    android:typeface="monospace"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toStartOf="parent"

@@ -1,11 +1,13 @@
 package com.example.moviesappproject.Activity;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
@@ -36,7 +38,7 @@ public class ListFavoriteFilms extends AppCompatActivity {
     private RequestQueue mRequestQueue;
     private StringRequest mStringRequest;
     private ProgressBar loading;
-
+    private ImageView back;
     private TextView message;
     List<OMDBResponse> filmDataList = new ArrayList<>();
     protected  String rech;
@@ -63,7 +65,15 @@ public class ListFavoriteFilms extends AppCompatActivity {
 
         initView();
         sendRequest();
-    }
+
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                    Intent intent2 = new Intent(ListFavoriteFilms.this, MainActivity.class);
+                    startActivity(intent2);
+            }
+        });
+        }
 
 
     protected void sendRequest() {
@@ -132,6 +142,7 @@ public class ListFavoriteFilms extends AppCompatActivity {
         recyclerViewBestMovies = findViewById(R.id.Recyclerfavorites);
         recyclerViewBestMovies.setLayoutManager(new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL));
         loading = findViewById(R.id.progressBar6);
+        back=findViewById(R.id.goBack);
     }
 }
 

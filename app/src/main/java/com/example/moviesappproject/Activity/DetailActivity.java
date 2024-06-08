@@ -159,14 +159,11 @@ public class DetailActivity extends AppCompatActivity {
         }
 
     private boolean isFilmInDatabase(String imdbId, String username) {
-        // Open your database connection
         SQLiteDatabase db = dbHelper.getReadableDatabase();
 
-        // Query the database to check if the combination of imdbId and username exists in the favorites table
         Cursor cursor = db.query("favorites", null, "imdbId = ? AND username = ?", new String[]{imdbId, username}, null, null, null);
         boolean exists = cursor.getCount() > 0;
 
-        // Close the cursor and the database connection
         cursor.close();
         db.close();
 

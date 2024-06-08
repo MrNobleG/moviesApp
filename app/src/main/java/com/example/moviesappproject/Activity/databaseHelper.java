@@ -18,7 +18,8 @@ public class databaseHelper extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase MyDatabase) {
         MyDatabase.execSQL("CREATE TABLE IF NOT EXISTS allusers(username TEXT primary key,fullname TEXT,email TEXT,password TEXT)");
         MyDatabase.execSQL("CREATE TABLE IF NOT EXISTS favorites (" +
-                "imdbId TEXT PRIMARY KEY, " +
+                "id INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                "imdbId TEXT , " +
                 "username TEXT, " +
                 "FOREIGN KEY(username) REFERENCES allusers(username) ON DELETE CASCADE, " +
                 "UNIQUE(username, imdbId) ON CONFLICT REPLACE)");

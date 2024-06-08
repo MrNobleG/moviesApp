@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.SpannableString;
 import android.text.Spanned;
@@ -28,11 +29,14 @@ public class LoginActivity extends AppCompatActivity {
     private EditText userEmailEditText, passwordEditText;
     private TextView signUpTextView;
     private databaseHelper dbHelper;
+    private SharedPreferences sharedPreferences;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+        // Initialize SharedPreferences
+        sharedPreferences = getSharedPreferences("MyPrefs", MODE_PRIVATE);
 
         initializeViews();
 
@@ -87,6 +91,9 @@ public class LoginActivity extends AppCompatActivity {
             auth.signInWithEmailAndPassword(useremail,password).addOnSuccessListener(new OnSuccessListener<AuthResult>() {
                 @Override
                 public void onSuccess(AuthResult authResult) {
+                    SharedPreferences.Editor editor = sharedPreferences.edit();
+                    editor.putString("useremail", useremail);
+                    editor.apply();
                     Toast.makeText(LoginActivity.this,"Login Successfully",Toast.LENGTH_SHORT).show();
                     Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                     intent.putExtra("useremail",useremail);

@@ -59,7 +59,7 @@ public class FilmListAdapter extends RecyclerView.Adapter<FilmListAdapter.ViewHo
                Intent intent = new Intent(context, DetailActivity.class);
                intent.putExtra("id", searchItem.getImdbID());
                intent.putExtra("email",userEmail);
-                Log.d("test1", "onClick: "+userEmail);
+                Log.d("testss", "onClick: "+userEmail);
                 context.startActivity(intent);
             }
         });

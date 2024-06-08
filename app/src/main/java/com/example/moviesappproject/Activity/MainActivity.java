@@ -53,7 +53,7 @@ public class MainActivity extends AppCompatActivity {
         sendemail = useremail;
         search();
         ImageView profile = findViewById(R.id.profile);
-        favorites =findViewById(R.id.favorite);
+        favorites =findViewById(R.id.floatingActionButton);
 
         favorites.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -82,23 +82,30 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void search() {
-        searchbt=findViewById(R.id.editText2);
-        searchbt.getText().toString();
+        searchbt = findViewById(R.id.editText2);
+
         searchbt.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
             public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
-                if(actionId== EditorInfo.IME_ACTION_SEARCH){
-                    Intent in =new Intent(MainActivity.this,ListFilmsActivity.class);
-                    in.putExtra("email",sendemail);
-                    in.putExtra("search",searchbt.getText().toString());
-                    startActivity(in);
+                if (actionId == EditorInfo.IME_ACTION_SEARCH) {
+                    String searchText = searchbt.getText().toString().trim(); // Trim any leading or trailing spaces
+                    if (searchText.isEmpty() || searchText.length() < 4) {
+                        // Show an error toast if the search text is empty or its length is less than 4
+                        Toast.makeText(MainActivity.this, "Search text must be at least 4 characters long", Toast.LENGTH_SHORT).show();
+                    } else {
+                        // Start ListFilmsActivity with the search text
+                        Intent in = new Intent(MainActivity.this, ListFilmsActivity.class);
+                        in.putExtra("email", sendemail);
+                        in.putExtra("search", searchText);
+                        startActivity(in);
+                    }
                     return true;
                 }
                 return false;
             }
         });
-
     }
+
 
     @Override
     public void onBackPressed() {
